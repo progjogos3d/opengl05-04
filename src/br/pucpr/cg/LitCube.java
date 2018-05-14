@@ -67,12 +67,12 @@ public class LitCube implements Scene {
     public void draw() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        Shader shader = mesh.getShader();
-        shader.bind()
+        mesh.getShader()
+            .bind()
                 .set(camera)
                 .set(light)
                 .set(material)
-        .unbind();
+            .unbind();
 
         mesh.setUniform("uWorld", new Matrix4f().rotateY(angleY).rotateX(angleX));
         mesh.draw();
