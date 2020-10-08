@@ -2,6 +2,7 @@ package br.pucpr.mage.phong;
 
 import br.pucpr.mage.ShaderItem;
 import org.joml.Vector3f;
+import static br.pucpr.mage.MathUtil.asString;
 
 import br.pucpr.mage.Shader;
 
@@ -13,10 +14,31 @@ public class DirectionalLight implements ShaderItem {
     
     public DirectionalLight(Vector3f direction, Vector3f ambient, Vector3f diffuse, Vector3f specular) {
         super();
-        this.direction = direction;
-        this.ambient = ambient;
-        this.diffuse = diffuse;
+        this.direction = new Vector3f(direction);
+        this.ambient = new Vector3f(ambient);
+        this.diffuse = new Vector3f(diffuse);
         this.specular = specular;
+    }
+
+    public DirectionalLight(Vector3f direction, Vector3f ambient, Vector3f diffuse) {
+        this(direction, ambient, diffuse, new Vector3f(1.0f, 1.0f, 1.0f));
+    }
+
+    public DirectionalLight(Vector3f direction, Vector3f diffuse, float ambient) {
+        this(direction, diffuse, new Vector3f(ambient, ambient, ambient));
+    }
+
+    public DirectionalLight(Vector3f direction, Vector3f diffuse) {
+        this(direction, diffuse,0.01f);
+    }
+
+
+    public DirectionalLight(Vector3f direction) {
+        this(direction, new Vector3f(1.0f, 1.0f, 1.0f));
+    }
+
+    public DirectionalLight() {
+        this(new Vector3f(1.0f, -1.0f, -1.0f).normalize());
     }
 
     public Vector3f getDirection() {
@@ -35,11 +57,43 @@ public class DirectionalLight implements ShaderItem {
         return specular;
     }
 
+    public DirectionalLight setAmbient(float i) {
+        return setAmbient(i, i, i);
+    }
+    public DirectionalLight setAmbient(float r, float g, float b) {
+        getAmbient().set(r, g, b);
+        return this;
+    }
+
+    public DirectionalLight setDiffuse(float r, float g, float b) {
+        getDiffuse().set(r, g, b);
+        return this;
+    }
+
+    public DirectionalLight setSpecular(float r, float g, float b) {
+        getSpecular().set(r, g, b);
+        return this;
+    }
+
+    public DirectionalLight setSpecular(float i) {
+        return setSpecular(i, i, i);
+    }
+
     @Override
     public void apply(Shader shader) {
         shader.setUniform("uLightDir", direction.normalize(new Vector3f()))
             .setUniform("uAmbientLight", ambient)
             .setUniform("uDiffuseLight", diffuse)
             .setUniform("uSpecularLight", specular);
+    }
+
+    @Override
+    public String toString() {
+        return "DirectionalLight{" +
+                "direction=" + asString(direction) +
+                ", ambient=" + asString(ambient) +
+                ", diffuse=" + asString(diffuse) +
+                ", specular=" + asString(specular) +
+                '}';
     }
 }
