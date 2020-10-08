@@ -21,15 +21,15 @@ public class DirectionalLight implements ShaderItem {
     }
 
     public DirectionalLight(Vector3f direction, Vector3f ambient, Vector3f diffuse) {
-        this(direction, ambient, diffuse, new Vector3f(1.0f, 1.0f, 1.0f));
+        this(direction, ambient, diffuse, diffuse);
     }
 
-    public DirectionalLight(Vector3f direction, Vector3f diffuse, float ambient) {
+    public DirectionalLight(Vector3f direction, float ambient, Vector3f diffuse) {
         this(direction, diffuse, new Vector3f(ambient, ambient, ambient));
     }
 
     public DirectionalLight(Vector3f direction, Vector3f diffuse) {
-        this(direction, diffuse,0.01f);
+        this(direction, 0.1f, diffuse);
     }
 
 
@@ -77,6 +77,10 @@ public class DirectionalLight implements ShaderItem {
 
     public DirectionalLight setSpecular(float i) {
         return setSpecular(i, i, i);
+    }
+
+    public DirectionalLight setColor(float r, float g, float b) {
+        return setDiffuse(r, g, b).setSpecular(r, g, b);
     }
 
     @Override
