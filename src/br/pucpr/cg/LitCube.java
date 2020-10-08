@@ -5,7 +5,6 @@ import br.pucpr.mage.camera.Camera;
 import br.pucpr.mage.phong.DirectionalLight;
 import br.pucpr.mage.phong.Material;
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -35,8 +34,7 @@ public class LitCube implements Scene {
 
         light = new DirectionalLight()
                 .setAmbient(0.1f)
-                .setDiffuse(1.0f, 1.0f, 0.8f)
-                .setSpecular(1.0f);
+                .setColor(1.0f, 1.0f, 0.8f);
 
         material = new Material()
                 .setColor(0.5f, 0.0f, 0.5f)
