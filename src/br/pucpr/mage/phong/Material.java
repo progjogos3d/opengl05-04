@@ -74,7 +74,7 @@ public class Material implements ShaderItem {
     }
 
     public Material setSpecular(float r, float g, float b) {
-        getAmbient().set(r, g, b);
+        getSpecular().set(r, g, b);
         return this;
     }
 
