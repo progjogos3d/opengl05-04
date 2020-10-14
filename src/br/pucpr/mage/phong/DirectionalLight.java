@@ -45,6 +45,11 @@ public class DirectionalLight implements ShaderItem {
         return direction;
     }
 
+    public DirectionalLight setDirection(float x, float y, float z) {
+        this.getDirection().set(x, y, z);
+        return this;
+    }
+
     public Vector3f getAmbient() {
         return ambient;
     }
