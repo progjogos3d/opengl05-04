@@ -70,20 +70,25 @@ public class DirectionalLight implements ShaderItem {
         return this;
     }
 
+    public DirectionalLight setDiffuse(float i) {
+        return setDiffuse(i, i, i);
+    }
     public DirectionalLight setDiffuse(float r, float g, float b) {
         getDiffuse().set(r, g, b);
-        return this;
-    }
-
-    public DirectionalLight setSpecular(float r, float g, float b) {
-        getSpecular().set(r, g, b);
         return this;
     }
 
     public DirectionalLight setSpecular(float i) {
         return setSpecular(i, i, i);
     }
+    public DirectionalLight setSpecular(float r, float g, float b) {
+        getSpecular().set(r, g, b);
+        return this;
+    }
 
+    public DirectionalLight setColor(float i) {
+        return setColor(i, i, i);
+    }
     public DirectionalLight setColor(float r, float g, float b) {
         return setDiffuse(r, g, b).setSpecular(r, g, b);
     }

@@ -51,14 +51,26 @@ public class Material implements ShaderItem {
         return setAmbient(r, g, b).setDiffuse(r, g, b);
     }
 
+    public Material setColor(float i) {
+        return setColor(i, i, i);
+    }
+
     public Material setAmbient(float r, float g, float b) {
         getAmbient().set(r, g, b);
         return this;
     }
 
+    public Material setAmbient(float i) {
+        return setAmbient(i, i, i);
+    }
+
     public Material setDiffuse(float r, float g, float b) {
         getDiffuse().set(r, g, b);
         return this;
+    }
+
+    public Material setDiffuse(float i) {
+        return setDiffuse(i, i, i);
     }
 
     public Material setSpecular(float r, float g, float b) {
