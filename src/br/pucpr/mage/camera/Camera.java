@@ -6,6 +6,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryStack;
 
+import static br.pucpr.mage.MathUtil.asString;
 import static org.joml.Math.toRadians;
 import static org.lwjgl.glfw.GLFW.glfwGetCurrentContext;
 import static org.lwjgl.glfw.GLFW.glfwGetWindowSize;
@@ -132,5 +133,10 @@ public class Camera implements ShaderItem {
         shader.setUniform("uProjection", getProjectionMatrix())
               .setUniform("uView", getViewMatrix())
               .setUniform("uCameraPos", getPosition());
+    }
+
+    @Override
+    public String toString() {
+        return "Camera position=" + asString(getPosition()) + " target=" + asString(getTarget()) + " up: " + asString(getUp());
     }
 }

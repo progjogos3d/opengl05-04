@@ -3,6 +3,7 @@ package br.pucpr.mage.camera;
 import org.joml.Vector3f;
 
 import static br.pucpr.mage.MathUtil.*;
+import static org.joml.Math.toDegrees;
 
 public class CameraFPS extends Camera {
     private float angleY = 0;
@@ -19,6 +20,10 @@ public class CameraFPS extends Camera {
     public CameraFPS setAngleY(float angle) {
         this.angleY = angle;
         return this;
+    }
+
+    public float getAngleY() {
+        return angleY;
     }
 
     public CameraFPS turn(float angle, float secs) {
@@ -38,6 +43,10 @@ public class CameraFPS extends Camera {
                 .mul(speed * secs);
         getPosition().add(strafe);
         return this;
+    }
 
+    @Override
+    public String toString() {
+        return String.format("Camera position=%s, angle=%.2f degrees",asString(getPosition()), toDegrees(getAngleY()) % 360);
     }
 }
